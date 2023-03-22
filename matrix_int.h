@@ -1,13 +1,15 @@
 #ifndef MATRIX_INT
 #define MATRIX_INT
 #include <stdlib.h>
+#include "matrix.h"
 
-typedef struct matrix {
+typedef struct matrixInt {
     int *mat;
 };
 
 void *sumInt(void *m1, void *m2);
 void *minusInt(void *m1, void *m2);
+void *multiInt(void *m1, void *m2);
 
 
 #endif
