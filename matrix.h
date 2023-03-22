@@ -8,20 +8,24 @@ typedef struct RingInfo
     void* (*sum)(void*, void*);
     void* (*minus)(void*);
     void* (*multi)(void*, void*);
+    void* (set_element)(RingInfo*, int el);
+    void* (get_element)(RingInfo*);
 } RingInfo;
 
-RingInfo *Create(
+RingInfo *newMatrix(
     size_t size,
     void* (*sum)(void*, void*),
     void* (*minus)(void*),
-    void* (*multi)(void*, void*) 
+    void* (*multi)(void*, void*), 
+    void* (set_element)(RingInfo*, int el),
+    void* (get_element)(RingInfo*)
 );
 
 typedef struct matrix
 {
     RingInfo *ringInfo;
-    void **mat;
-};
+    void *x;
+} matrix;
 
 
 #endif
