@@ -6,7 +6,8 @@ typedef struct matrix {
     int *mat;
 };
 
-void sumInt(void *m1, void *m2, void *res);
+void *sumInt(void *m1, void *m2);
+void *minusInt(void *m1, void *m2);
 
 
 #endif
