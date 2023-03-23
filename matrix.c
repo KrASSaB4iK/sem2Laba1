@@ -18,6 +18,6 @@ void *get_element(Matrix *mat) {
     return (void*)(((matrixInt*)(mat->ringInfo))->x);
 }
 
-void set_elementInt(Matrix *mat, int el) {
+void set_element(Matrix *mat, int el) {
     ((matrixInt*)(mat->ringInfo))->x = el;
 }
