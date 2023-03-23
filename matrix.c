@@ -1,19 +1,23 @@
 #include "matrix.h"
-
-struct RingInfo* newMatrix(
+#include "matrix_int.h"
+struct Matrix* newMatrix(
     size_t size,
     void* (*sum)(void*, void*),
     void* (*minus)(void*),
-    void* (*multi)(void*, void*),
-    void* (set_element)(RingInfo*, int el),
-    void* (get_element)(RingInfo*)
+    void* (*multi)(void*, void*)
 ) {
     RingInfo *mat = malloc(sizeof(RingInfo));
     mat->size = size;
     mat->sum = sum;
     mat->minus = minus;
     mat->multi = multi;
-    mat->set_element = set_element;
-    mat->get_element = get_element;
     return mat;    
+}
+
+void *get_element(Matrix *mat) {
+    return (void*)(((matrixInt*)(mat->ringInfo))->x);
+}
+
+void set_elementInt(Matrix *mat, int el) {
+    ((matrixInt*)(mat->ringInfo))->x = el;
 }

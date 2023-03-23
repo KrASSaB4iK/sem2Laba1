@@ -7,8 +7,8 @@ typedef struct matrixInt {
     int x;
 } matrixInt;
 
-int set_elementInt(matrix *mat, int el);
-int get_elementInt(matrix *mat);
+void set_elementInt(Matrix *mat, int el);
+void *get_elementInt(Matrix *mat);
 void *sumInt(void *m1, void *m2);
 void *minusInt(void *m1, void *m2);
 void *multiInt(void *m1, void *m2);
