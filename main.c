@@ -5,11 +5,12 @@
 
 int main() {
     Matrix *int_ring = newMatrix(sizeof(int), &sumInt, &minusInt, &multiInt);
-    set_element(int_ring, 10);
-    int p = get_element(int_ring);
-    printf("Hello");
-    printf("%d", p);
-    free(int_ring); 
-    printf("Hello");
+	int *array = malloc(5*sizeof(int));
+    for (int i = 0; i < 5; ++i) {
+        array[i] = i;
+    }
+    set_element(int_ring, (void*)&array);
+    //int p = get_element(int_ring);
+    delete_Matrix(int_ring);
     return 0;
 }

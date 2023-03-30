@@ -14,10 +14,13 @@ typedef struct RingInfo
 typedef struct Matrix
 {
     RingInfo *ringInfo;
-    void *x;
+    void **x;
+    void *n;
+    void *m;
 } Matrix;
 
-void set_element(Matrix*, int el);
+void delete_Matrix(Matrix *mat);
+void set_element(Matrix*, void* el);
 void *get_element(Matrix*);
 
 Matrix *newMatrix(
