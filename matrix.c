@@ -16,8 +16,18 @@ Matrix* newMatrix(
     return mat; 
 }
 
-Matrixs* new_array_Matrixs() {
-    Matrixs *array = malloc(sizeof(Matrixs));
+Matrix **new_array_Matrixs() {
+    Matrix **array = malloc(0);
+    return array;
+}
+
+void add_Matrix_in_array(Matrix **array, Matrix *mat, int *len_array) {
+    array[*len_array - 1] = mat;
+}
+
+Matrix **add_memory_array(Matrix **array, int *len_array) {
+    *len_array = *len_array + 1;
+    array = realloc(array, *len_array * sizeof(Matrix));
     return array;
 }
 
@@ -33,6 +43,14 @@ void delete_Matrix(Matrix *mat) {
 	free(mat->ringInfo);
     free(mat->x);
     free(mat);
+}
+
+void delete_array_Matrix(Matrix **array, int *len_array) {
+    int i = 0;
+    while (i < *len_array) {
+        delete_Matrix(array[i]);
+    }
+    
 }
 
 void add_sizeof_matrix(Matrix *mat) {

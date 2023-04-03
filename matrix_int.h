@@ -3,14 +3,11 @@
 #include <stdlib.h>
 #include "matrix.h"
 
-typedef struct matrixInt {
-    int x;
-} matrixInt;
-
 
 void *sumInt(void *m1, void *m2);
 void *minusInt(void *m1, void *m2);
 void *multiInt(void *m1, void *m2);
+Matrix *matrix_array_volumeInt(Matrix *mat);
 
 
 #endif

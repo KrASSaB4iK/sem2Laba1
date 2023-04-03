@@ -25,3 +25,12 @@ void *multiInt(void *m1, void *m2) {
     *resm = (*int_m1) * (*int_m2);
     return (void*)resm;
 }
+
+Matrix *matrix_array_volumeInt(Matrix *mat) {
+    int num;
+    for (int i = 0; i < mat->m * mat->n; ++i) {
+        scanf("%d", &num);
+        mat->x[i] = (void*)num;
+    }
+    return mat;
+}

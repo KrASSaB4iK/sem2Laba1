@@ -19,13 +19,12 @@ typedef struct Matrix
     int m;
 } Matrix;
 
-typedef struct Matrixs {
-    Matrix **array;
-    int array_len;
-} Matrixs;
+Matrix **new_array_Matrixs();
+Matrix **add_memory_array(Matrix **array, int *len_array);
 
-Matrixs* new_array_Matrixs();
+void add_Matrix_in_array(Matrix **array, Matrix *mat, int *len_array);
 void delete_Matrix(Matrix *mat);
+void delete_array_Matrix(Matrix **array, int *len_array);
 void set_element(Matrix*, void** el);
 void *get_element(Matrix*);
 void add_sizeof_matrix(Matrix* mat);
