@@ -8,7 +8,7 @@ int main() {
     Matrix **array = new_array_Matrixs();
     int count= 1;
     add_sizeof_matrix(int_ring);
-    int_ring = matrix_array_volumeInt(int_ring);
+    set_element(int_ring, (void*)matrix_array_volumeInt(int_ring));
     add_Matrix_in_array(array, int_ring, count);
     delete_array_Matrix(array, count);
 
