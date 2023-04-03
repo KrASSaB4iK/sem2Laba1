@@ -4,13 +4,12 @@
 #include <stdlib.h>
 
 int main() {
-    Matrixs *som = new_array_Matrixs();
     Matrix *int_ring = newMatrix(sizeof(int), &sumInt, &minusInt, &multiInt);
-    som->array[0] = int_ring;
-	int *array = malloc(5*sizeof(int));
+    Matrix **array = new_array_Matrixs();
+    int count= 1;
     add_sizeof_matrix(int_ring);
-    printf("%d", int_ring->n);
-    set_element(int_ring, (void*)array);
-    delete_Matrix(int_ring);
-    return 0;
+    int_ring = matrix_array_volumeInt(int_ring);
+    add_Matrix_in_array(array, int_ring, count);
+    delete_array_Matrix(array, count);
+
 }
