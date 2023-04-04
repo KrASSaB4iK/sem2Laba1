@@ -1,6 +1,6 @@
 #include "matrix.h"
-#include "matrix_int.h"
 #include <stdio.h>
+
 Matrix* newMatrix(
     size_t size,
     void* (*sum)(void*, void*),
@@ -31,6 +31,12 @@ Matrix **add_memory_array(Matrix **array, int *len_array) {
     return array;
 }
 
+void print_Matrix(Matrix *m) {
+    for (int i = 0; i < m->m*m->n; ++i) {
+        printf("%d ", m->x[i]);
+    }
+}
+
 void *get_element(Matrix *mat) {
     return (void*)(mat->x);
 }
@@ -49,6 +55,7 @@ void delete_array_Matrix(Matrix **array, int *len_array) {
     int i = 0;
     while (i < *len_array) {
         delete_Matrix(array[i]);
+        i++;
     }
     
 }
