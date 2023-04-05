@@ -4,7 +4,7 @@
 #include "matrix.h"
 
 
-Matrix *sumInt(Matrix *m1, Matrix *m2);
+void *sumInt(Matrix *m1, Matrix *m2);
 void *minusInt(void *m1, void *m2);
 void *multiInt(void *m1, void *m2);
 int *matrix_array_volumeInt(Matrix *mat);

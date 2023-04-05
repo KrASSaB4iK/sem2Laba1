@@ -3,7 +3,7 @@
 #include <stdlib.h>
 #include <stdio.h>
 
-Matrix *sumInt(Matrix *m1, Matrix *m2) {
+void *sumInt(Matrix *m1, Matrix *m2) {
     Matrix *mat1 = malloc(sizeof(Matrix));
     mat1->m = m1->m;
     mat1->n = m1->n;
@@ -12,7 +12,7 @@ Matrix *sumInt(Matrix *m1, Matrix *m2) {
         array_mat1[i] = ((int*)m1->x)[i] + ((int*)m2->x)[i];
     }
     set_element(mat1, (void*)matrix_array_volumeInt(mat1));
-    return mat1;
+    //return mat1;
 }
 
 void *minusInt(void *m1, void *m2) {

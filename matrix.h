@@ -5,7 +5,7 @@
 typedef struct RingInfo
 {
     size_t size;
-    void* (*sum)(void*, void*);
+    //void* (*sum)(void*, void*);
     void* (*minus)(void*, void*);
     void* (*multi)(void*, void*);
 } RingInfo;
@@ -27,11 +27,11 @@ void delete_array_Matrix(Matrix **array, int *len_array);
 void set_element(Matrix*, void** el);
 void *get_element(Matrix*);
 void add_sizeof_matrix(Matrix* mat);
-void print_Matrix(Matrix *m)
+void print_Matrix(Matrix *m);
 
 Matrix *newMatrix(
     size_t size,
-    void* (*sum)(void*, void*),
+    //void* (*sum)(void*, void*),
     void* (*minus)(void*, void*),
     void* (*multi)(void*, void*)
 );

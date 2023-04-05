@@ -3,14 +3,14 @@
 
 Matrix* newMatrix(
     size_t size,
-    void* (*sum)(void*, void*),
+    //void* (*sum)(void*, void*),
     void* (*minus)(void*, void*),
     void* (*multi)(void*, void*)
 ) {
 	Matrix *mat = malloc(sizeof(Matrix));
     mat->ringInfo = malloc(sizeof(RingInfo));
     mat->ringInfo->size = size;
-    mat->ringInfo->sum = sum;
+    //mat->ringInfo->sum = sum;
     mat->ringInfo->minus = minus;
     mat->ringInfo->multi = multi;
     return mat; 
@@ -57,7 +57,7 @@ void delete_array_Matrix(Matrix **array, int *len_array) {
         delete_Matrix(array[i]);
         i++;
     }
-    
+    free(array);
 }
 
 void add_sizeof_matrix(Matrix *mat) {
