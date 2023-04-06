@@ -1,18 +1,22 @@
 #include "matrix.h"
+#include "matrixfloat.h"
+#include "matrixint.h"
 #include <stdio.h>
 
 Matrix* newMatrix(
     size_t size,
-    //void* (*sum)(void*, void*),
-    void* (*minus)(void*, void*),
-    void* (*multi)(void*, void*)
+    void* (*sum)(Matrix***, Matrix*, Matrix*, int*),
+    void* (*minus)(Matrix***, Matrix*, Matrix*, int*),
+    void* (*multi)(Matrix***, Matrix*, Matrix*, int*),
+    void* (*trans)(Matrix***, Matrix*, int*)
 ) {
 	Matrix *mat = malloc(sizeof(Matrix));
     mat->ringInfo = malloc(sizeof(RingInfo));
     mat->ringInfo->size = size;
-    //mat->ringInfo->sum = sum;
+    mat->ringInfo->sum = sum;
     mat->ringInfo->minus = minus;
     mat->ringInfo->multi = multi;
+    mat->ringInfo->trans = trans;
     return mat; 
 }
 
@@ -32,10 +36,30 @@ Matrix **add_memory_array(Matrix **array, int *len_array) {
 }
 
 void print_Matrix(Matrix *m) {
-    for (int i = 0; i < m->m*m->n; ++i) {
-        printf("%d ", m->x[i]);
-    }
-}
+if (m->ringInfo->sum == sumInt){
+	int *a = (int*)m->x;
+	int count = 0;
+		for (int i = 0; i < m->n; ++i) {
+		 	for (int j = 0; j < m->m; ++j) {
+		   		printf("%d ",a[count]);
+		   		count++;
+		   	}
+		   	printf("lkgnodfn\n");
+		}
+	}
+	else {
+		float *a = (float*)m->x;
+		int count = 0;
+		for (int i = 0; i < m->n; ++i) {
+		    for (int j = 0; j < m->m; ++j) {
+		   		printf("%f ",a[count]);
+		   		count++;
+		   	}
+		   	printf("\n");
+		}
+	}
+}	
+
 
 void *get_element(Matrix *mat) {
     return (void*)(mat->x);
@@ -61,5 +85,5 @@ void delete_array_Matrix(Matrix **array, int *len_array) {
 }
 
 void add_sizeof_matrix(Matrix *mat) {
-    scanf("%d %d", &(mat->n), &(mat->m));
+    scanf("%d %d", &(mat->m), &(mat->n));
 }

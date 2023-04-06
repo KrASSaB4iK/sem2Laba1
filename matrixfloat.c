@@ -1,15 +1,15 @@
-#include "matrixint.h"
 #include "matrix.h"
+#include "matrixfloat.h"
 #include <stdlib.h>
 #include <stdio.h>
 
-void *sumInt(Matrix ***array, Matrix *m1, Matrix *m2, int *len) {
-    Matrix *mat1 = newMatrix(sizeof(int), &sumInt, &minusInt, &multiInt, &transInt);
+void *sumFloat(Matrix ***array, Matrix *m1, Matrix *m2, int *len) {
+    Matrix *mat1 = newMatrix(sizeof(float), &sumFloat, &minusFloat, &multiFloat, &transFloat);
     mat1->m = m1->m;
     mat1->n = m1->n;
-    int *array_mat1 = malloc((m1->n*m2->n)*sizeof(int));
-    int *a1 = (int*)m1->x;
-    int *a2 = (int*)m2->x;
+    float *array_mat1 = malloc((m1->n*m2->n)*sizeof(float));
+    float *a1 = (float*)m1->x;
+    float *a2 = (float*)m2->x;
     for (int i = 0; i < m1->n*m2->n; ++i) {
         array_mat1[i] = a1[i] + a2[i];
     }
@@ -20,13 +20,13 @@ void *sumInt(Matrix ***array, Matrix *m1, Matrix *m2, int *len) {
 
 
 
-void *minusInt(Matrix ***array, Matrix *m1, Matrix *m2, int *len) {
-    Matrix *mat1 = newMatrix(sizeof(int), &sumInt, &minusInt, &multiInt, &transInt);
+void *minusFloat(Matrix ***array, Matrix *m1, Matrix *m2, int *len) {
+    Matrix *mat1 = newMatrix(sizeof(float), &sumFloat, &minusFloat, &multiFloat, &transFloat);
     mat1->m = m1->m;
-    mat1->n = m2->n;
-    int *array_mat1 = malloc((m1->n*m2->n)*sizeof(int));
-    int *a1 = (int*)m1->x;
-    int *a2 = (int*)m2->x;
+    mat1->n = m1->n;
+    float *array_mat1 = malloc((m1->n*m2->n)*sizeof(float));
+    float *a1 = (float*)m1->x;
+    float *a2 = (float*)m2->x;
     for (int i = 0; i < m1->n*m2->n; ++i) {
         array_mat1[i] = a1[i] - a2[i];
     }
@@ -35,14 +35,15 @@ void *minusInt(Matrix ***array, Matrix *m1, Matrix *m2, int *len) {
     add_Matrix_in_array(*array, mat1, len);
 }
 
-void *multiInt(Matrix ***array, Matrix *m1, Matrix *m2, int *len) {
-    Matrix *mat1 = newMatrix(sizeof(int), &sumInt, &minusInt, &multiInt, &transInt);
+void *multiFloat(Matrix ***array, Matrix *m1, Matrix *m2, int *len) {
+    Matrix *mat1 = newMatrix(sizeof(float), &sumFloat, &minusFloat, &multiFloat, &transFloat);
     mat1->m = m1->m;
     mat1->n = m2->n;
-    int *array_mat1 = malloc((mat1->n*mat1->m)*sizeof(int));
-    int *a1 = (int*)m1->x;
-    int *a2 = (int*)m2->x;
-    int sum = 0, count = 0;
+    float *array_mat1 = malloc((mat1->n*mat1->m)*sizeof(float));
+    float *a1 = (float*)m1->x;
+    float *a2 = (float*)m2->x;
+    float sum = 0;
+    int count = 0;
     for (int k = 0; k < mat1->n; k++) {
 	    for (int i = 0; i < mat1->m; ++i) {
     		for (int j = 0; j < m2->m; ++j) {
@@ -58,12 +59,12 @@ void *multiInt(Matrix ***array, Matrix *m1, Matrix *m2, int *len) {
     add_Matrix_in_array(*array, mat1, len);
 }
 
-void *transInt(Matrix ***array, Matrix *m, int *len) {
-	Matrix *mat1 = newMatrix(sizeof(int), &sumInt, &minusInt, &multiInt, &transInt);
+void *transFloat(Matrix ***array, Matrix *m, int *len) {
+	Matrix *mat1 = newMatrix(sizeof(int), &sumFloat, &minusFloat, &multiFloat, &transFloat);
 	mat1->m = m->n;
 	mat1->n = m->m;
-	int *array_mat1 = malloc((m->m*m->n)*sizeof(int));
-	int *a = (int*)m->x;
+	float *array_mat1 = malloc((m->m*m->n)*sizeof(float));
+	float *a = (float*)m->x;
 	int count = 0;
 	for (int i = 0; i < mat1->n; ++i) {
 		for (int j = 0; j < mat1->m; ++j) {
@@ -76,11 +77,11 @@ void *transInt(Matrix ***array, Matrix *m, int *len) {
 	add_Matrix_in_array(*array, mat1, len);	
 }
 
-int *matrix_array_volumeInt(Matrix *mat) {
-    int *array = malloc((mat->n*mat->m)*sizeof(int));
-    int num;
+float *matrix_array_volumeFloat(Matrix *mat) {
+    float *array = malloc((mat->n*mat->m)*sizeof(float));
+    float num;
     for (int i = 0; i < mat->m * mat->n; ++i) {
-        scanf("%d", &num);
+        scanf("%f", &num);
         array[i] = num;
     }
     return array;

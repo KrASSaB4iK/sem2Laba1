@@ -2,12 +2,15 @@
 #define MATRIX_H
 #include <stdlib.h>
 
+typedef struct Matrix Matrix;
+
 typedef struct RingInfo
 {
     size_t size;
-    //void* (*sum)(void*, void*);
-    void* (*minus)(void*, void*);
-    void* (*multi)(void*, void*);
+	void* (*sum)(Matrix***, Matrix*, Matrix*, int*);
+	void* (*minus)(Matrix***, Matrix*, Matrix*, int*);
+    void* (*multi)(Matrix***, Matrix*, Matrix*, int*);
+    void* (*trans)(Matrix***, Matrix*, int*);
 } RingInfo;
 
 typedef struct Matrix
@@ -31,9 +34,10 @@ void print_Matrix(Matrix *m);
 
 Matrix *newMatrix(
     size_t size,
-    //void* (*sum)(void*, void*),
-    void* (*minus)(void*, void*),
-    void* (*multi)(void*, void*)
+	void* (*sum)(Matrix***, Matrix*, Matrix*, int*),
+    void* (*minus)(Matrix***, Matrix*, Matrix*, int*),
+    void* (*multi)(Matrix***, Matrix*, Matrix*, int*),
+    void* (*trans)(Matrix***, Matrix*, int*)
 );
 
 #endif
