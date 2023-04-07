@@ -1,5 +1,9 @@
+#ifndef MENU_H
+#define MENU_H
 #include <stdio.h>
 #include "matrix.h"
-#include "matrix_int.h"
+#include "matrixint.h"
 
 void menu();
+
+#endif  
