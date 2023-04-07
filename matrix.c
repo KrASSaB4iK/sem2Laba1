@@ -44,7 +44,7 @@ if (m->ringInfo->sum == sumInt){
 		   		printf("%d ",a[count]);
 		   		count++;
 		   	}
-		   	printf("lkgnodfn\n");
+		   	printf("\n");
 		}
 	}
 	else {
@@ -82,6 +82,91 @@ void delete_array_Matrix(Matrix **array, int *len_array) {
         i++;
     }
     free(array);
+}
+
+Matrix **choose_type_of_matrix(Matrix **array, int *count){
+    int c;
+    scanf("%d", &c);
+    if (c = 1) {
+        Matrix *a = newMatrix(sizeof(int), &sumInt, &minusInt, &multiInt, &transInt);
+        add_sizeof_matrix(a);
+        set_element(a, (void*)matrix_array_volumeInt(a));
+        array = add_memory_array(array, count);
+        add_Matrix_in_array(array, a, count);
+    }
+    else {
+        Matrix *a = newMatrix(sizeof(float), &sumFloat, &minusFloat, &multiFloat, &transFloat);
+        add_sizeof_matrix(a);
+        set_element(a, (void*)matrix_array_volumeFloat(a));
+        array = add_memory_array(array, count);
+        add_Matrix_in_array(array, a, count);
+    }
+    return array;
+}
+
+Matrix *choose_Matrix(Matrix **array,int *count) {
+    printf("Введите номер матрицы, нумерация с 0");
+    int a;
+    scanf("%d", &a);
+    return(array[a]);
+}
+
+Matrix **sum_Matrix(Matrix **array, int *count) {
+    printf("Введите номер матрицы 1, нумерация с 0");
+    int a, b;
+    scanf("%d", &a);
+    printf("Введите номер матрицы 2, нумерация с 0");
+    scanf("%d", &b);
+    if (array[a]->ringInfo->size == sizeof(int)) {
+        sumInt(&array, array[a], array[b], count);
+    }
+    else {
+        sumFloat(&array, array[a], array[b], &count);
+    }
+    return(array);
+}
+
+Matrix **minus_Matrix(Matrix **array, int *count) {
+    printf("Введите номер матрицы 1, нумерация с 0");
+    int a, b;
+    scanf("%d", &a);
+    printf("Введите номер матрицы 2, нумерация с 0");
+    scanf("%d", &b);
+    if (array[a]->ringInfo->size == sizeof(int)) {
+        minusInt(&array, array[a], array[b], count);
+    }
+    else {
+        minusFloat(&array, array[a], array[b], &count);
+    }
+    return(array);
+}
+
+Matrix **multi_Matrix(Matrix **array, int *count) {
+    printf("Введите номер матрицы 1, нумерация с 0");
+    int a, b;
+    scanf("%d", &a);
+    printf("Введите номер матрицы 2, нумерация с 0");
+    scanf("%d", &b);
+    if (array[a]->ringInfo->size == sizeof(int)) {
+        multiInt(&array, array[a], array[b], count);
+    }
+    else {
+        multiFloat(&array, array[a], array[b], &count);
+    }
+    return(array);
+}
+
+Matrix **trans_Matrix(Matrix **array, int *count) {
+    printf("Введите номер матрицы, нумерация с 0");
+    int a;
+    scanf("%d", &a);
+    if (array[a]->ringInfo->size == sizeof(int)) {
+        transInt(&array, array[a], count);
+    }
+    else {
+        transFloat(&array, array[a], &count);
+    }
+    return(array);
 }
 
 void add_sizeof_matrix(Matrix *mat) {

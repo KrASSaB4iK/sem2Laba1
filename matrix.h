@@ -23,6 +23,13 @@ typedef struct Matrix
 
 Matrix **new_array_Matrixs();
 Matrix **add_memory_array(Matrix **array, int *len_array);
+Matrix **choose_type_of_matrix(Matrix**, int *count);
+Matrix *choose_Matrix(Matrix **array, int *count);
+Matrix **sum_Matrix(Matrix **array, int *count);
+Matrix **minus_Matrix(Matrix **array, int *count);
+Matrix **multi_Matrix(Matrix **array, int *count);
+Matrix **trans_Matrix(Matrix **array, int *count);
+
 
 void add_Matrix_in_array(Matrix **array, Matrix *mat, int *len_array);
 void delete_Matrix(Matrix *mat);
@@ -31,6 +38,7 @@ void set_element(Matrix*, void** el);
 void *get_element(Matrix*);
 void add_sizeof_matrix(Matrix* mat);
 void print_Matrix(Matrix *m);
+
 
 Matrix *newMatrix(
     size_t size,
