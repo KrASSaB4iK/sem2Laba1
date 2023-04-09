@@ -11,6 +11,7 @@ typedef struct RingInfo
 	void* (*minus)(Matrix***, Matrix*, Matrix*, int*);
     void* (*multi)(Matrix***, Matrix*, Matrix*, int*);
     void* (*trans)(Matrix***, Matrix*, int*);
+    void* (*add_line)(Matrix*);
 } RingInfo;
 
 typedef struct Matrix
@@ -38,6 +39,7 @@ void set_element(Matrix*, void** el);
 void *get_element(Matrix*);
 void add_sizeof_matrix(Matrix* mat);
 void print_Matrix(Matrix *m);
+void add_line_to_line(Matrix **array, int *count);
 
 
 Matrix *newMatrix(
@@ -45,7 +47,8 @@ Matrix *newMatrix(
 	void* (*sum)(Matrix***, Matrix*, Matrix*, int*),
     void* (*minus)(Matrix***, Matrix*, Matrix*, int*),
     void* (*multi)(Matrix***, Matrix*, Matrix*, int*),
-    void* (*trans)(Matrix***, Matrix*, int*)
+    void* (*trans)(Matrix***, Matrix*, int*), 
+    void* (*add_line)(Matrix*)
 );
 
 #endif

@@ -4,7 +4,7 @@
 #include <stdio.h>
 
 void *sumFloat(Matrix ***array, Matrix *m1, Matrix *m2, int *len) {
-    Matrix *mat1 = newMatrix(sizeof(float), &sumFloat, &minusFloat, &multiFloat, &transFloat);
+    Matrix *mat1 = newMatrix(sizeof(float), &sumFloat, &minusFloat, &multiFloat, &transFloat, &add_lineFloat);
     mat1->m = m1->m;
     mat1->n = m1->n;
     float *array_mat1 = malloc((m1->n*m2->n)*sizeof(float));
@@ -21,7 +21,7 @@ void *sumFloat(Matrix ***array, Matrix *m1, Matrix *m2, int *len) {
 
 
 void *minusFloat(Matrix ***array, Matrix *m1, Matrix *m2, int *len) {
-    Matrix *mat1 = newMatrix(sizeof(float), &sumFloat, &minusFloat, &multiFloat, &transFloat);
+    Matrix *mat1 = newMatrix(sizeof(float), &sumFloat, &minusFloat, &multiFloat, &transFloat, &add_lineFloat);
     mat1->m = m1->m;
     mat1->n = m1->n;
     float *array_mat1 = malloc((m1->n*m2->n)*sizeof(float));
@@ -36,7 +36,7 @@ void *minusFloat(Matrix ***array, Matrix *m1, Matrix *m2, int *len) {
 }
 
 void *multiFloat(Matrix ***array, Matrix *m1, Matrix *m2, int *len) {
-    Matrix *mat1 = newMatrix(sizeof(float), &sumFloat, &minusFloat, &multiFloat, &transFloat);
+    Matrix *mat1 = newMatrix(sizeof(float), &sumFloat, &minusFloat, &multiFloat, &transFloat, &add_lineFloat);
     mat1->m = m1->m;
     mat1->n = m2->n;
     float *array_mat1 = malloc((mat1->n*mat1->m)*sizeof(float));
@@ -60,7 +60,7 @@ void *multiFloat(Matrix ***array, Matrix *m1, Matrix *m2, int *len) {
 }
 
 void *transFloat(Matrix ***array, Matrix *m, int *len) {
-	Matrix *mat1 = newMatrix(sizeof(int), &sumFloat, &minusFloat, &multiFloat, &transFloat);
+	Matrix *mat1 = newMatrix(sizeof(float), &sumFloat, &minusFloat, &multiFloat, &transFloat, &add_lineFloat);
 	mat1->m = m->n;
 	mat1->n = m->m;
 	float *array_mat1 = malloc((m->m*m->n)*sizeof(float));
@@ -85,4 +85,15 @@ float *matrix_array_volumeFloat(Matrix *mat) {
         array[i] = num;
     }
     return array;
+}
+
+void *add_lineFloat(Matrix *m1) {
+    int l1, l2;
+    float *a = (float*)m1->x;
+    scanf("%d %d", &l1, &l2);
+    for (int i = 0; i < m1->n; ++i) {
+        a[l1*m1->n + i] = a[l1*m1->n + i] + a[l2*m1->n + i];
+    }
+    free(m1->x);
+    set_element(m1, (void*)a);
 }

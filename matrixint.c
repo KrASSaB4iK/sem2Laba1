@@ -4,7 +4,7 @@
 #include <stdio.h>
 
 void *sumInt(Matrix ***array, Matrix *m1, Matrix *m2, int *len) {
-    Matrix *mat1 = newMatrix(sizeof(int), &sumInt, &minusInt, &multiInt, &transInt);
+    Matrix *mat1 = newMatrix(sizeof(int), &sumInt, &minusInt, &multiInt, &transInt, &add_lineInt);
     mat1->m = m1->m;
     mat1->n = m1->n;
     int *array_mat1 = malloc((m1->n*m2->n)*sizeof(int));
@@ -21,7 +21,7 @@ void *sumInt(Matrix ***array, Matrix *m1, Matrix *m2, int *len) {
 
 
 void *minusInt(Matrix ***array, Matrix *m1, Matrix *m2, int *len) {
-    Matrix *mat1 = newMatrix(sizeof(int), &sumInt, &minusInt, &multiInt, &transInt);
+    Matrix *mat1 = newMatrix(sizeof(int), &sumInt, &minusInt, &multiInt, &transInt, &add_lineInt);
     mat1->m = m1->m;
     mat1->n = m2->n;
     int *array_mat1 = malloc((m1->n*m2->n)*sizeof(int));
@@ -36,7 +36,7 @@ void *minusInt(Matrix ***array, Matrix *m1, Matrix *m2, int *len) {
 }
 
 void *multiInt(Matrix ***array, Matrix *m1, Matrix *m2, int *len) {
-    Matrix *mat1 = newMatrix(sizeof(int), &sumInt, &minusInt, &multiInt, &transInt);
+    Matrix *mat1 = newMatrix(sizeof(int), &sumInt, &minusInt, &multiInt, &transInt, &add_lineInt);
     mat1->m = m1->m;
     mat1->n = m2->n;
     int *array_mat1 = malloc((mat1->n*mat1->m)*sizeof(int));
@@ -59,7 +59,7 @@ void *multiInt(Matrix ***array, Matrix *m1, Matrix *m2, int *len) {
 }
 
 void *transInt(Matrix ***array, Matrix *m, int *len) {
-	Matrix *mat1 = newMatrix(sizeof(int), &sumInt, &minusInt, &multiInt, &transInt);
+	Matrix *mat1 = newMatrix(sizeof(int), &sumInt, &minusInt, &multiInt, &transInt, &add_lineInt);
 	mat1->m = m->n;
 	mat1->n = m->m;
 	int *array_mat1 = malloc((m->m*m->n)*sizeof(int));
@@ -84,4 +84,15 @@ int *matrix_array_volumeInt(Matrix *mat) {
         array[i] = num;
     }
     return array;
+}
+
+void *add_lineInt(Matrix *m1) {
+    int l1, l2;
+    int *a = (int*)m1->x;
+    scanf("%d %d", &l1, &l2);
+    for (int i = 0; i < m1->n; ++i) {
+        a[l1*m1->n + i] = a[l1*m1->n + i] + a[l2*m1->n + i];
+    }
+    free(m1->x);
+    set_element(m1, (void*)a);
 }

@@ -40,5 +40,4 @@ int main() {
     // // print_Matrix(array[6]);
     // delete_array_Matrix(array, &count);
     menu();
-
 }
