@@ -8,7 +8,7 @@ void *sumFloat(Matrix ***arr, Matrix *m1, Matrix *m2, int *len);
 void *minusFloat(Matrix ***arr, Matrix *m1, Matrix *m2, int *len);
 void *multiFloat(Matrix ***arr, Matrix *m1, Matrix *m2, int *len);
 void *transFloat(Matrix ***arr, Matrix *m, int *len);
-void *add_lineFloat(Matrix *m1);
+void *add_lineFloat(Matrix ***array, Matrix *m1, int *len);
 float *matrix_array_volumeFloat(Matrix *mat);
 
 

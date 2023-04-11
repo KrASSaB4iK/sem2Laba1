@@ -32,7 +32,7 @@ void menu(){
                 array = trans_Matrix(array, &count);
                 break; 
             case 7: 
-                add_line_to_line(array, &count);
+                array = add_line_to_line(array, &count);
                 break; 
         } 
     } 

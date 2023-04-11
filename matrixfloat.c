@@ -87,13 +87,21 @@ float *matrix_array_volumeFloat(Matrix *mat) {
     return array;
 }
 
-void *add_lineFloat(Matrix *m1) {
+void *add_lineFloat(Matrix ***array, Matrix *m1, int *len) {
     int l1, l2;
+    Matrix *mat1 = newMatrix(sizeof(float), &sumFloat, &minusFloat, &multiFloat, &transFloat, &add_lineFloat);
+    mat1->m = m1->n;
+    mat1->n = m1->m;
+    float *array_matrix = malloc(m1->m*m1->n*sizeof(float));
     float *a = (float*)m1->x;
     scanf("%d %d", &l1, &l2);
-    for (int i = 0; i < m1->n; ++i) {
-        a[l1*m1->n + i] = a[l1*m1->n + i] + a[l2*m1->n + i];
+    for (int i = 0; i < m1->m*m1->n; ++i) {
+    	array_matrix[i] = a[i];
     }
-    free(m1->x);
-    set_element(m1, (void*)a);
+    for (int i = 0; i < m1->n; ++i) {
+        array_matrix[l1*m1->n + i] = array_matrix[l1*m1->n + i] + array_matrix[l2*m1->n + i];
+    }
+    set_element(mat1, (void*)array_matrix);
+   	*array = add_memory_array(*array, len);
+	add_Matrix_in_array(*array, mat1, len);
 }

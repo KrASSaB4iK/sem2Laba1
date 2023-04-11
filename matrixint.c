@@ -86,13 +86,21 @@ int *matrix_array_volumeInt(Matrix *mat) {
     return array;
 }
 
-void *add_lineInt(Matrix *m1) {
+void *add_lineInt(Matrix ***array, Matrix *m1, int *len) {
     int l1, l2;
+    Matrix *mat1 = newMatrix(sizeof(int), &sumInt, &minusInt, &multiInt, &transInt, &add_lineInt);
+    mat1->m = m1->n;
+    mat1->n = m1->m;
+    int *array_mat1 = malloc((m1->m*m1->n)*sizeof(int));
     int *a = (int*)m1->x;
     scanf("%d %d", &l1, &l2);
-    for (int i = 0; i < m1->n; ++i) {
-        a[l1*m1->n + i] = a[l1*m1->n + i] + a[l2*m1->n + i];
+    for (int i = 0; i < m1->m*m1->n; ++i) {
+    	array_mat1[i] = a[i];
     }
-    free(m1->x);
-    set_element(m1, (void*)a);
+    for (int i = 0; i < m1->n; ++i) {
+        array_mat1[l1*m1->n + i] = array_mat1[l1*m1->n + i] + array_mat1[l2*m1->n + i];
+    }
+    set_element(mat1, (void*)array_mat1);
+   	*array = add_memory_array(*array, len);
+	add_Matrix_in_array(*array, mat1, len);
 }

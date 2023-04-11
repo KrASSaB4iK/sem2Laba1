@@ -9,7 +9,7 @@ Matrix* newMatrix(
     void* (*minus)(Matrix***, Matrix*, Matrix*, int*),
     void* (*multi)(Matrix***, Matrix*, Matrix*, int*),
     void* (*trans)(Matrix***, Matrix*, int*),
-    void* (*add_line)(Matrix*)
+    void* (*add_line)(Matrix***, Matrix*, int*)
 ) {
 	Matrix *mat = malloc(sizeof(Matrix));
     mat->ringInfo = malloc(sizeof(RingInfo));
@@ -89,7 +89,7 @@ void delete_array_Matrix(Matrix **array, int *len_array) {
 Matrix **choose_type_of_matrix(Matrix **array, int *count){
     int c;
     scanf("%d", &c);
-    if (c = 1) {
+    if (c == 1) {
         Matrix *a = newMatrix(sizeof(int), &sumInt, &minusInt, &multiInt, &transInt, &add_lineInt);
         add_sizeof_matrix(a);
         set_element(a, (void*)matrix_array_volumeInt(a));
@@ -143,16 +143,17 @@ Matrix **minus_Matrix(Matrix **array, int *count) {
     return(array);
 }
 
-void add_line_to_line(Matrix **array, int *count) {
+Matrix **add_line_to_line(Matrix **array, int *count) {
     printf("Введите номер матрицы 1, нумерация с 0");
     int a;
     scanf("%d", &a);
     if (array[a]->ringInfo->size == sizeof(int)) {
-        add_lineInt(array[a]);
+        add_lineInt(&array, array[a], count);
     }
     else {
-        add_lineFloat(array[a]);
+        add_lineFloat(&array ,array[a], count);
     }
+    return array;
 }
 
 Matrix **multi_Matrix(Matrix **array, int *count) {
