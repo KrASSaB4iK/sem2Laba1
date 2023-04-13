@@ -3,6 +3,7 @@
 #include <stdio.h>
 #include "matrix.h"
 #include "matrixint.h"
+#include "errors.h"
 
 void menu();
 

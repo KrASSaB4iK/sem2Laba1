@@ -2,6 +2,7 @@
 #include "matrix.h"
 #include <stdlib.h>
 #include <stdio.h>
+#include "errors.h"
 
 void *sumInt(Matrix ***array, Matrix *m1, Matrix *m2, int *len) {
     Matrix *mat1 = newMatrix(sizeof(int), &sumInt, &minusInt, &multiInt, &transInt, &add_lineInt);
@@ -80,20 +81,21 @@ int *matrix_array_volumeInt(Matrix *mat) {
     int *array = malloc((mat->n*mat->m)*sizeof(int));
     int num;
     for (int i = 0; i < mat->m * mat->n; ++i) {
-        scanf("%d", &num);
+        checkNumInt(&num);
         array[i] = num;
     }
     return array;
 }
 
 void *add_lineInt(Matrix ***array, Matrix *m1, int *len) {
-    int l1, l2;
+    int l1, l2, status;
     Matrix *mat1 = newMatrix(sizeof(int), &sumInt, &minusInt, &multiInt, &transInt, &add_lineInt);
-    mat1->m = m1->n;
-    mat1->n = m1->m;
+    mat1->m = m1->m;
+    mat1->n = m1->n;
     int *array_mat1 = malloc((m1->m*m1->n)*sizeof(int));
     int *a = (int*)m1->x;
-    scanf("%d %d", &l1, &l2);
+    status = checkRange(&l1, m1->m);
+    status = checkRange(&l2, m1->m);
     for (int i = 0; i < m1->m*m1->n; ++i) {
     	array_mat1[i] = a[i];
     }

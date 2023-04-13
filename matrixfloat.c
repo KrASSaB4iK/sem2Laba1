@@ -2,6 +2,8 @@
 #include "matrixfloat.h"
 #include <stdlib.h>
 #include <stdio.h>
+#include "errors.h"
+
 
 void *sumFloat(Matrix ***array, Matrix *m1, Matrix *m2, int *len) {
     Matrix *mat1 = newMatrix(sizeof(float), &sumFloat, &minusFloat, &multiFloat, &transFloat, &add_lineFloat);
@@ -17,8 +19,6 @@ void *sumFloat(Matrix ***array, Matrix *m1, Matrix *m2, int *len) {
     *array = add_memory_array(*array, len);
     add_Matrix_in_array(*array, mat1, len);
 }
-
-
 
 void *minusFloat(Matrix ***array, Matrix *m1, Matrix *m2, int *len) {
     Matrix *mat1 = newMatrix(sizeof(float), &sumFloat, &minusFloat, &multiFloat, &transFloat, &add_lineFloat);
@@ -81,20 +81,21 @@ float *matrix_array_volumeFloat(Matrix *mat) {
     float *array = malloc((mat->n*mat->m)*sizeof(float));
     float num;
     for (int i = 0; i < mat->m * mat->n; ++i) {
-        scanf("%f", &num);
+        checkNumFloat(&num);
         array[i] = num;
     }
     return array;
 }
 
 void *add_lineFloat(Matrix ***array, Matrix *m1, int *len) {
-    int l1, l2;
+    int l1, l2, status;
     Matrix *mat1 = newMatrix(sizeof(float), &sumFloat, &minusFloat, &multiFloat, &transFloat, &add_lineFloat);
     mat1->m = m1->n;
     mat1->n = m1->m;
     float *array_matrix = malloc(m1->m*m1->n*sizeof(float));
     float *a = (float*)m1->x;
-    scanf("%d %d", &l1, &l2);
+    status = checkRange(&l1, m1->m);
+    status = checkRange(&l2, m1->m);
     for (int i = 0; i < m1->m*m1->n; ++i) {
     	array_matrix[i] = a[i];
     }

@@ -2,15 +2,15 @@
 #include "matrix.h"
 #include "matrixint.h"
 #include "matrixfloat.h"
+#include "errors.h"
 
-void menu(){ 
-    printf("Какого типа данных будет матрица\n1 - (int)\n 2- (float)"); 
+void menu(){  
     int choise = 1;
     Matrix **array = new_array_Matrixs();
     int count = 0; 
     while(choise != 8){ 
         printf("1 - create matrix\n2 - sum matrix\n3 - minus matrix\n4 - multi matrix\n5 - print matrix\n6 - mat trasposition\n7 - adding to a line\n8 - quit\nenter the number:"); 
-        scanf("%d", &choise); 
+        checkRange(&choise, 8);
         switch(choise){ 
             case 1: 
                 printf("Какого типа данных будет матрица\n1 - (int)\n 2- (float)");
