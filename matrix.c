@@ -89,7 +89,7 @@ void delete_array_Matrix(Matrix **array, int *len_array) {
 
 Matrix **choose_type_of_matrix(Matrix **array, int *count){
     int c;
-    checkRange(&c, 2);
+    checkRange(&c, 3);
     if (c == 1) {
         Matrix *a = newMatrix(sizeof(int), &sumInt, &minusInt, &multiInt, &transInt, &add_lineInt);
         add_sizeof_matrix(a);
@@ -108,19 +108,19 @@ Matrix **choose_type_of_matrix(Matrix **array, int *count){
 }
 
 Matrix *choose_Matrix(Matrix **array,int *count) {
-    printf("Введите номер матрицы, нумерация с 0: ");
+    printf("Enter the matrix number, numbering from 0: ");
     int a;
     checkRange(&a, *count);
     return(array[a]);
 }
 
 Matrix **sum_Matrix(Matrix **array, int *count) {
-    printf("Введите номер матрицы 1, нумерация с 0: ");
+    printf("Enter the matrix number 1, numbering from 0: ");
     int a, b;
     checkRange(&a, *count);
-    printf("Введите номер матрицы 2, нумерация с 0: ");
+    printf("Enter the matrix number 2, numbering from 0: ");
     checkRange(&b, *count);
-    if (array[a]->ringInfo->size == sizeof(int)) {
+    if (array[a]->ringInfo->sum == sumInt) {
         sumInt(&array, array[a], array[b], count);
     }
     else {
@@ -130,12 +130,12 @@ Matrix **sum_Matrix(Matrix **array, int *count) {
 }
 
 Matrix **minus_Matrix(Matrix **array, int *count) {
-    printf("Введите номер матрицы 1, нумерация с 0: ");
+    printf("Enter the matrix number 1, numbering from 0: ");
     int a, b;
     checkRange(&a, *count);
-    printf("Введите номер матрицы 2, нумерация с 0: ");
+    printf("Enter the matrix number 2, numbering from 0: ");
     checkRange(&b, *count);
-    if (array[a]->ringInfo->size == sizeof(int)) {
+    if (array[a]->ringInfo->sum == sumInt) {
         minusInt(&array, array[a], array[b], count);
     }
     else {
@@ -145,10 +145,10 @@ Matrix **minus_Matrix(Matrix **array, int *count) {
 }
 
 Matrix **add_line_to_line(Matrix **array, int *count) {
-    printf("Введите номер матрицы, нумерация с 0: ");
+    printf("Enter the matrix number, numbering from 0: ");
     int a;
     checkRange(&a, *count);
-    if (array[a]->ringInfo->size == sizeof(int)) {
+    if (array[a]->ringInfo->sum == sumInt) {
         add_lineInt(&array, array[a], count);
     }
     else {
@@ -158,12 +158,12 @@ Matrix **add_line_to_line(Matrix **array, int *count) {
 }
 
 Matrix **multi_Matrix(Matrix **array, int *count) {
-    printf("Введите номер матрицы 1, нумерация с 0: ");
+    printf("Enter the matrix number 1, numbering from 0: ");
     int a, b;
     checkRange(&a, *count);
-    printf("Введите номер матрицы 2, нумерация с 0: ");
+    printf("Enter the matrix number 2, numbering from 0: ");
     checkRange(&b, *count);
-    if (array[a]->ringInfo->size == sizeof(int)) {
+    if (array[a]->ringInfo->sum == sumInt) {
         multiInt(&array, array[a], array[b], count);
     }
     else {
@@ -173,10 +173,10 @@ Matrix **multi_Matrix(Matrix **array, int *count) {
 }
 
 Matrix **trans_Matrix(Matrix **array, int *count) {
-    printf("Введите номер матрицы, нумерация с 0: ");
+    printf("Enter the matrix number, numbering from 0: ");
     int a;
     checkRange(&a, *count);
-    if (array[a]->ringInfo->size == sizeof(int)) {
+    if (array[a]->ringInfo->sum == sumInt) {
         transInt(&array, array[a], count);
     }
     else {
@@ -186,7 +186,7 @@ Matrix **trans_Matrix(Matrix **array, int *count) {
 }
 
 void add_sizeof_matrix(Matrix *mat) {
-	printf("Введите количество строк и столбцов: ");
+	printf("Enter the number of rows and columns: ");
     checkNumInt(&mat->m);
     checkNumInt(&mat->n);
 }
