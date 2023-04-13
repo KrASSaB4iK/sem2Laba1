@@ -80,10 +80,12 @@ void *transFloat(Matrix ***array, Matrix *m, int *len) {
 float *matrix_array_volumeFloat(Matrix *mat) {
     float *array = malloc((mat->n*mat->m)*sizeof(float));
     float num;
+    printf("Заполните матрицу: ");
     for (int i = 0; i < mat->m * mat->n; ++i) {
         checkNumFloat(&num);
         array[i] = num;
     }
+    cleaner();
     return array;
 }
 

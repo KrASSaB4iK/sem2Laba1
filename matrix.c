@@ -89,7 +89,7 @@ void delete_array_Matrix(Matrix **array, int *len_array) {
 
 Matrix **choose_type_of_matrix(Matrix **array, int *count){
     int c;
-    checkRange(&c, count);
+    checkRange(&c, 2);
     if (c == 1) {
         Matrix *a = newMatrix(sizeof(int), &sumInt, &minusInt, &multiInt, &transInt, &add_lineInt);
         add_sizeof_matrix(a);
@@ -110,7 +110,7 @@ Matrix **choose_type_of_matrix(Matrix **array, int *count){
 Matrix *choose_Matrix(Matrix **array,int *count) {
     printf("Введите номер матрицы, нумерация с 0: ");
     int a;
-    checkRange(a, *count);
+    checkRange(&a, *count);
     return(array[a]);
 }
 
@@ -186,6 +186,7 @@ Matrix **trans_Matrix(Matrix **array, int *count) {
 }
 
 void add_sizeof_matrix(Matrix *mat) {
+	printf("Введите количество строк и столбцов: ");
     checkNumInt(&mat->m);
     checkNumInt(&mat->n);
 }

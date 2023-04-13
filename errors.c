@@ -49,6 +49,7 @@ int checkRange (int *vol, int len) {
         cleaner();
         status = scanf("%d", &num);
     }
+    cleaner();
     *vol = num;
     return 0;
 }

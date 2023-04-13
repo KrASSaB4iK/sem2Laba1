@@ -80,10 +80,12 @@ void *transInt(Matrix ***array, Matrix *m, int *len) {
 int *matrix_array_volumeInt(Matrix *mat) {
     int *array = malloc((mat->n*mat->m)*sizeof(int));
     int num;
+    printf("Заполните матрицу: ");
     for (int i = 0; i < mat->m * mat->n; ++i) {
         checkNumInt(&num);
         array[i] = num;
     }
+    cleaner();
     return array;
 }
 
