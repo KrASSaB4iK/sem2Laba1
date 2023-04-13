@@ -13,7 +13,7 @@ void menu(){
         checkRange(&choise, 9);
         switch(choise){ 
             case 1: 
-                printf("Какого типа данных будет матрица\n1 - (int)\n2- (float)");
+                printf("What type of data will the matrix be\n1 - (int)\n2- (float)");
                 array = choose_type_of_matrix(array, &count);
                 break; 
             case 2:  
